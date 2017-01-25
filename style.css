@@ -9,11 +9,20 @@ table, td {
 }
 
 td.field {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     text-align: center;
 }
 
-td.field:hover {
+.onmouseover {
     background-color: lightgray;
+}
+
+.flaged {
+    background-color: darkorange;
+}
+
+
+.explosion {
+    background-color: crimson;
 }

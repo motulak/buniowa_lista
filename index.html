@@ -2,19 +2,37 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.js"></script>
-    <script src="test.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous"></script>
+
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
 <p>If you click on me, I will disappear.</p>
 <p>Click me away!</p>
 <p>Click me too!</p>
+</div></div>
+
+    <div id="div1"></div>
+    <div id="lista"></div>
+
+<button class="ajax">AJAX</button>
+
+<button class="lista">Wczytaj buniowa listę</button>
+
+
 
 <div id="demo"></div>
-
+<br><br>
 <table id="saper">
     <tr>
         <td class="field">?</td>
@@ -53,5 +71,8 @@
     </tr>
 </table>
 
+</div>
+
 </body>
+<script src="test.js"></script>
 </html>
