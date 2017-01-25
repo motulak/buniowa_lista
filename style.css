@@ -1,0 +1,19 @@
+
+p {
+    color: navy;
+}
+
+table, td {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+td.field {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+td.field:hover {
+    background-color: lightgray;
+}
