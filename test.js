@@ -18,7 +18,7 @@ $(document).ready(function(){
         $.get("http://localhost:5000", function(data, status){
         $("#lista").html("Data: " + data[0].name + "\nStatus: " + status +'<br>');
         var text2 = "";
-        for (i=0; i < lista_buni.length; i++) {
+        for (i=0; i < data.length; i++) {
             text2 += data[i].name+ ' <i class="fa fa-circle-o" aria-hidden="true"></i>' + '<br/>';
         }
         $("#demo").html(text2)
@@ -59,7 +59,6 @@ $(document).ready(function(){
 
 var lista_buni = [
     { nameof : "recznik", group : "higiena"},
-    { nameof : "szczoteczka do zębów", group : "higiena"}
     ]
 
 });
