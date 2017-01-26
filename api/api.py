@@ -1,42 +1,38 @@
-from flask import request, url_for
+from flask import request, url_for, Response, json
 from flask.ext.api import FlaskAPI, status, exceptions
+from data_logic import Lista
 
 app = FlaskAPI(__name__)
 
-lista_buni = [
-    { "key" :  1 , "name" : "recznik", "group" : "higiena"},
-    { "key" : 2 , "name" : "szczoteczka do zębów", "group" : "higiena"},
-    { "key" : 3 , "name" : "mydło w płynie", "group" : "higiena"},
-    { "key" : 4 , "name" : "szampon", "group" : "higiena"},
-    { "key" : 5 , "name" : "pasta do zębów", "group" : "higiena"},
-]
+master_list = Lista()
+master_list.initialize()
 
-users = [
-    { "id": 1 , "user" : "darek" , "lista": lista_buni}
-]
+
+
 
 
 @app.route("/", methods=['GET', 'POST'])
-def test():
+def return_all_elements():
     """
     List or create notes.
     """
     if request.method == 'GET':
-        return lista_buni.sort()
+        js = json.dumps(master_list.return_elements())
+        resp = Response(js,status=200, mimetype='application/json')
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
 
     # request.method == 'POST'
     return {'no hello': ' no world'}
 
 
-@app.route("/<int:id>/", methods=['GET', 'PUT', 'DELETE'])
-def user(id):
-    """
-    Retrieve, update or delete note instances.
-    """
+@app.route("/add/<id>/<group>/", methods=['GET', 'PUT', 'DELETE'])
+def user(id,group):
     if request.method == 'PUT':
-        note = str(request.data.get('text', ''))
-        # notes[key] = note
-        return "a"
+        master_list.add_element(id,group)
+        # resp = Response('{OK}',status=200, mimetype='application/json')
+        # resp.headers['Access-Control-Allow-Origin'] = '*'
+        return "OK"
 
     elif request.method == 'DELETE':
         # notes.pop(key, None)

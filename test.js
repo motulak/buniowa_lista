@@ -11,26 +11,20 @@ $(document).ready(function(){
         }
         $("#demo").html(text)
 
-    });
+        });
 
 
-    $("button.ajax").click(function(){
-        $.get("http://localhost:5000", function(data, status){
-        $("#lista").html("Data: " + data[0].name + "\nStatus: " + status +'<br>');
+    $("#load_list").click(function(){
+        $.get("http://127.0.0.1:5000", function(jdata, status){
+        var data = JSON.parse(jdata)
+        $("#lista").html("Data: " + data + "\nStatus: " + status +'<br>');
         var text2 = "";
         for (i=0; i < data.length; i++) {
             text2 += data[i].name+ ' <i class="fa fa-circle-o" aria-hidden="true"></i>' + '<br/>';
         }
         $("#demo").html(text2)
     }
-
-
-
-    );
-
-
-
-        });
+    );      });
 
 
 
