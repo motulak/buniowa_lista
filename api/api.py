@@ -38,7 +38,7 @@ def user(id,group):
         # notes.pop(key, None)
         return '', status.HTTP_204_NO_CONTENT
 
-    # request.method == 'GET'
+    # request.method == 'GET
     if id not in users:
         raise exceptions.NotFound()
     return "a"
