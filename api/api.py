@@ -1,10 +1,10 @@
 from flask import request, url_for, Response, json
 from flask.ext.api import FlaskAPI, status, exceptions
-from data_logic import Lista
+from data_logic import OldList
 
 app = FlaskAPI(__name__)
 
-master_list = Lista()
+master_list = OldList()
 master_list.initialize()
 
 

@@ -5,6 +5,9 @@
 $(document).ready(function(){
 
     $("#load_list").click(function(){
+        var loader = '<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>'
+        loader += '<span class="sr-only">Loading...</span>'
+        $("#demo").html(loader);
         $.get("http://127.0.0.1:5000", function(jdata, status){
         var data = JSON.parse(jdata)
         var text2 = "";
@@ -16,6 +19,9 @@ $(document).ready(function(){
     );      });
 
 
+    $("#clear_list").click(function(){
+        $("#demo").empty();
+    } )
 
 
     $(".field").click(function () {
