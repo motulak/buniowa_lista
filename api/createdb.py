@@ -21,6 +21,7 @@ class Customer(db.Entity):
 
 
 
+
 class Product(db.Entity):
     id = PrimaryKey(int, auto=True)
     name = Required(unicode)

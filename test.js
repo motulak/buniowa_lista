@@ -8,15 +8,29 @@ $(document).ready(function(){
         var loader = '<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>'
         loader += '<span class="sr-only">Loading...</span>'
         $("#demo").html(loader);
-        $.get("http://127.0.0.1:5000", function(jdata, status){
-        var data = JSON.parse(jdata)
-        var text2 = "";
-        for (i=0; i < data.length; i++) {
-            text2 += data[i].name+ ' <input type="checkbox">' + '<br/>';
+//        $.get("http://127.0.0.1:5000/get/1/", function(jdata, status)
+        var token = $("#user-token").val()
+        $.ajax({
+         url: "http://127.0.0.1:5000/get/1/",
+         type: "GET",
+         beforeSend: function(xhr){xhr.setRequestHeader( 'token', token);},
+         success: function(jdata)        {
+            var data = jdata
+            var table = '<table id="items">';
+            for (i=0; i < data.length; i++) {
+                table +='<tr><td>' + data[i].name + '</td><td> <input type="checkbox"></td><td> <input type="checkbox"></td></tr>';
+            }
+            table +='</table>'
+            $("#demo").html(table)
+    },
+        statusCode: {
+            403 : function() {
+             $("#demo").html('<div class="alert alert-danger"><strong>Not authorized!</strong> Wrong or empty token.</div>')
+            }
+
         }
-        $("#demo").html(text2)
-    }
-    );      });
+          });
+          });
 
 
     $("#clear_list").click(function(){
@@ -27,7 +41,7 @@ $(document).ready(function(){
     $(".field").click(function () {
         if ($(this).hasClass("explosion") !== true) {
             $(this).addClass("flaged");
-            $(this).text(" ");
+            $(this).html('');
         }
 
         }

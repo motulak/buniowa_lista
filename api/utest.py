@@ -3,82 +3,50 @@
 
 import unittest
 from data_logic import OldList, User, Item, ItemsList
-from createdb import *
+from new_data import *
 
-class TestClassNewUser(unittest.TestCase):
+class TestClassUser(unittest.TestCase):
 
     def test_check(self):
+        BindAndGenerate()
         return True
 
-    def test_creating_db(self):
-        start()
-        Customer.show_info(self)
+    def test_add_new_user(self):
+        User.display_all_users(self)
+        User.add_new_user(self,'TestName','TestLogin','TestPassword')
+        User.display_all_users(self)
+
+class TestClassCategory(unittest.TestCase):
+
+    def test_category_add_new_category(self):
+        Category.display_all_categories(self)
+        Category.add_category(self,'TestCategory','Some info about cateogry')
+        Category.display_all_categories(self)
 
 
+class TestClassItem(unittest.TestCase):
+
+    def test_1_display_all_items(self):
+        Item.display_all_items(self)
+
+    def test_2_add_new_Item(self):
+        Category.add_category(self, 'Xcat', 'Some info about cateogry')
+        Item.add_new_item(self,name='Item1',category=1, autohr='XAuthor')
+        self.assertEqual(Item.print_single_item_by_id(self,1), Item.print_single_item_by_name(self,'Item1'))
 
 
-# class TestClassItem(unittest.TestCase):
-#
-#     def test_Item_Create_new_item(self):
-#         item1 = Item('a','b')
-#         self.assertEqual(item1.id, 1)
-#         self.assertEqual(item1.name,'a')
-#         self.assertEqual(item1.category, 'b')
-#         self.assertEqual(item1.ammount, 1)
-#         self.assertEqual(item1.have_it, False)
-#         self.assertEqual(item1.packed, False)
-#
-#     def test_item_ids(self):
-#         item1 = Item('a','b')
-#         item2 = Item('c','d')
-#         item3 = Item('e', 'f')
-#         self.assertEqual(item1.id, 1)
-#         self.assertEqual(item2.id, 2)
-#
-#
-#
-#
-#
-#
-# class TestClassLista(unittest.TestCase):
-#
-#     def test_check(self):
-#
-#         return True
-#
-#     def test_create_list(self):
-#         lista1 = OldList()
-#         self.assertEqual(lista1.elements, [])
-#
-#     def test_intialze(self):
-#         lista2 = OldList()
-#         lista2.initialize()
-#         self.assertEqual(lista2.elements,[ \
-#         { "key" :  1 , "name" : "recznik", "group" : "higiena"}, \
-#         { "key" : 2 , "name" : "szczoteczka do zębów", "group" : "higiena"}] )
-#
-#     def test_single_value_return(self):
-#         lista1 = OldList()
-#         lista1.initialize()
-#         self.assertEqual(lista1.return_element(2),{ "key" : 2 , "name" : "szczoteczka do zębów", "group" : "higiena"} )
-#         self.assertEqual(lista1.return_element(1), { "key" :  1 , "name" : "recznik", "group" : "higiena"})
-#         self.assertEqual(lista1.return_element(0), False)
-#
-#     def test_add_element_to_a_list(self):
-#         lista1 = OldList()
-#         lista1.initialize()
-#         lista1.add_element('a', 'b')
-#         lista1.add_element('c', 'd')
-#         self.assertEqual(lista1.return_element(3), {"key": 3, "name": "a", "group": "b"})
-#         self.assertEqual(lista1.return_element(4), {"key": 4, "name": "c", "group": "d"})
+class TestCalssItemStatus(unittest.TestCase):
 
+    def test_1_add_new_status_item(self):
 
-
-
-
-
-
-
+        User.add_new_user(self, 'UserA', 'UserA', 'Test_UserPassword')
+        User.add_new_user(self, 'UserB', 'UserB', 'Test_UserPassword')
+        x=User.add_new_user(self, 'UserX', 'UserX', 'Test_UserPassword')
+        User.display_all_users(self)
+        Category.add_category(self, name='Test_Category')
+        Item.add_new_item(self, name='Test_Item', category=1)
+        ItemsStatus.add_new_status(self, user=x.id, item=1)
+        self.get_by_id=ItemsStatus.print_statuses_for_user_id(self, user=x.id)
 
 
 

@@ -26,3 +26,11 @@ td.field {
 .explosion {
     background-color: crimson;
 }
+
+table#items td {
+    padding: 10px;
+}
+
+table#items th {
+    padding 15px;
+}
